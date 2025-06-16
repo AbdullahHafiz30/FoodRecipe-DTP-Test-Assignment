@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct RecipeCardView: View {
     
@@ -14,7 +15,7 @@ struct RecipeCardView: View {
     var body: some View {
         ZStack {
             VStack {
-                AsyncImage(url: URL(string: recipe.featured_image ?? "")!) { image in
+                WebImage(url: URL(string: recipe.featured_image ?? "")!) { image in
                     image.resizable()
                 } placeholder: {
                     ProgressView()

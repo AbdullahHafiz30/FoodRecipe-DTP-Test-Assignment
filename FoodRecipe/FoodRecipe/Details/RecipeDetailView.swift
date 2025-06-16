@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct RecipeDetailView: View {
     
@@ -17,7 +18,7 @@ struct RecipeDetailView: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .center, spacing: 8) {
-                    AsyncImage(url: URL(string: vm.recipe?.featured_image ?? "")) { image in
+                    WebImage(url: URL(string: vm.recipe?.featured_image ?? "")) { image in
                         image.resizable()
                             .frame(width: 350, height: 350)
                             .cornerRadius(15)
