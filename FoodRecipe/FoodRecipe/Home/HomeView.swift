@@ -12,15 +12,15 @@ struct HomeView: View {
     @State private var searchText = ""
     
     private let adaptiveColumns = [
-        GridItem(.adaptive(minimum: 170))
+        GridItem(.adaptive(minimum: 130))
     ]
     
     var body: some View {
         NavigationView {
             ScrollView {
-                LazyVGrid(columns: adaptiveColumns, spacing: 10) {
+                LazyVGrid(columns: adaptiveColumns, spacing: 20) {
                     ForEach(searchResults) { recipe in
-                        NavigationLink(destination: RecipeDetailView(), label: {
+                        NavigationLink(destination: RecipeDetailView(id: recipe.id), label: {
                             RecipeCardView(recipe: recipe).foregroundColor(.primary)
                         }).onAppear {
                             Task { await vm.fetchRecpies() }
@@ -50,12 +50,11 @@ struct HomeView: View {
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
-            //            .navigationTitle("Meals Recipes")
             .searchable(text: $searchText,
                         placement: .navigationBarDrawer(displayMode: .always),
                         prompt: "Search meal name")
             .task { await vm.fetchRecpies(query: "") }
-            .refreshable { await vm.fetchRecpies(query: searchText) }
+            .refreshable { await vm.fetchRecpies() }
         }
         
         var searchResults: [Recipe] {

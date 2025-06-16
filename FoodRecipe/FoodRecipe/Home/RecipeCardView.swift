@@ -18,23 +18,28 @@ struct RecipeCardView: View {
                     image.resizable()
                 } placeholder: {
                     ProgressView()
+                        .frame(width: 150, height: 150)
+                        .background(Color.gray.opacity(0.2))
                 }
                 .frame(width: 150, height: 150)
                 .clipShape(.rect(cornerRadius: 15))
+                .padding(.bottom)
                 
                 Text(recipe.title ?? "")
                     .font(.system(size: 18, weight: .bold))
-                Text(recipe.description ?? "")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Text(recipe.publisher ?? "")
                     .font(.title2)
-                    .opacity(0.6)
+                    .opacity(0.4)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 
             }
-            .frame(width: 150, height: 250)
+            .frame(width: 140, height: 230)
             .padding()
         }
         .overlay(
-            RoundedRectangle(cornerRadius: 15)
-                .strokeBorder(.black.opacity(0.1), lineWidth: 2)
+            RoundedRectangle(cornerRadius: 10)
+                .strokeBorder(.gray.opacity(0.1), lineWidth: 2)
         )
     }
 }
