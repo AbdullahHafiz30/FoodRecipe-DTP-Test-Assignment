@@ -20,8 +20,6 @@ A sleek, SwiftUI‑based recipe browser that lets users **search** thousands of 
 
 ## 📸 Screenshots
 
-> Replace the filenames below with your own images placed in a `Screenshots/` folder.
-
 | Home Grid                           | Search Results                    | Recipe Detail                     |
 | ----------------------------------- | --------------------------------- | --------------------------------- |
 | <img src="https://github.com/user-attachments/assets/a2b76827-9678-4e23-a13e-1e6b714e18c4" width="196" height="426"> | <img src="https://github.com/user-attachments/assets/8d59bed8-c3cd-4329-a3b9-0c10d61d842d" width="196" height="426"> | <img src="https://github.com/user-attachments/assets/59392b1b-2db1-42c7-bfb0-b94562c51268" width="196" height="426"> |
@@ -29,8 +27,6 @@ A sleek, SwiftUI‑based recipe browser that lets users **search** thousands of 
 ---
 
 ## 🎬 Demo Video
-
-> Drop your demo clip in `Demo/foodrecipe_demo.mp4` **or** upload to YouTube/Vimeo and update the link.
 
 [▶️ Watch the Demo](https://drive.google.com/file/d/1AZhDlbc6vtKn0MT6jTYVQ5lcnS9S1WVC/view?usp=sharing)
 
