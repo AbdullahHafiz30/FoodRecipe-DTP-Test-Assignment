@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @StateObject var vm = HomeViewModel()
     @State private var searchText = ""
+    @Environment(\.colorScheme) var colorScheme
     
     private let adaptiveColumns = [
         GridItem(.adaptive(minimum: 130))
@@ -38,9 +39,18 @@ struct HomeView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                     }) {
-                        Image("FilterIcon")
-                            .resizable()
-                            .frame(width: 25, height: 25)
+                        if colorScheme == .light {
+                            Image("FilterIcon")
+                                .resizable()
+                                .frame(width: 25, height: 25)
+                                .foregroundColor(.primary)
+                        } else {
+                            Image("WhiteFilterIcon")
+                                .resizable()
+                                .frame(width: 25, height: 25)
+                                .foregroundColor(.primary)
+                        }
+                        
                     }
                 }
                 

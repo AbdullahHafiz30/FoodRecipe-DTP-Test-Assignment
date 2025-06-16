@@ -50,7 +50,7 @@ struct RecipeDetailView: View {
                     }) {
                         Image(systemName: "heart")
                             .resizable()
-                            .foregroundColor(.gray)
+                            .foregroundColor(.primary)
                             .frame(width: 25, height: 25)
                     }
                 }
@@ -61,7 +61,7 @@ struct RecipeDetailView: View {
                     }) {
                         Image(systemName: "arrow.left")
                             .resizable()
-                            .foregroundColor(.black)
+                            .foregroundColor(.primary)
                             .frame(width: 25, height: 25)
                     }
                 }
