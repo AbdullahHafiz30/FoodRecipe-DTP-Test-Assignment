@@ -30,8 +30,9 @@ class DetailsViewModel: ObservableObject {
             }
             
             let dec = try JSONDecoder().decode(Recipe.self, from: data)
-            print(dec)
-            recipe = dec
+            await MainActor.run {              // 🏠 hop to main thread
+                self.recipe = dec
+            }
         } catch {
             print("Error: ", error.localizedDescription)
         }

@@ -24,7 +24,7 @@ struct HomeView: View {
                         NavigationLink(destination: RecipeDetailView(id: recipe.id), label: {
                             RecipeCardView(recipe: recipe).foregroundColor(.primary)
                         }).onAppear {
-                            Task { await vm.fetchRecpies() }
+                            Task { await vm.loadMoreIfNeeded(current: recipe) }
                         }
                     }
                     
@@ -63,8 +63,15 @@ struct HomeView: View {
             .searchable(text: $searchText,
                         placement: .navigationBarDrawer(displayMode: .always),
                         prompt: "Search meal name")
-            .task { await vm.fetchRecpies(query: "") }
-            .refreshable { await vm.fetchRecpies() }
+            .onSubmit(of: .search) {
+                Task { await vm.fetchRecpies(query: searchText) }
+            }
+            .task(id: vm.currentQuery) {
+                if vm.Recipes.isEmpty {
+                    await vm.fetchRecpies(query: vm.currentQuery)
+                }
+            }
+            .refreshable { await vm.fetchRecpies(query: searchText.isEmpty ? "" : vm.currentQuery) }
         }
         
         var searchResults: [Recipe] {

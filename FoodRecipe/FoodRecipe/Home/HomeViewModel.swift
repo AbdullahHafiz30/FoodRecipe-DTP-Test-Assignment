@@ -14,15 +14,22 @@ class HomeViewModel: ObservableObject {
     
     private let APIKey = PlistReader.value(forKey: "Food2ForkKey")!
     var nextPageURL: String?
+    var currentQuery: String = ""
     
-    
+    func loadMoreIfNeeded(current item : Recipe) async {
+        guard let lastItem = Recipes.last else { return }
+        guard item.id == lastItem.id,
+              let _ = nextPageURL,
+              !isLoading else { return }
+        await fetchRecpies()
+    }
     
     func fetchRecpies(query: String? = nil) async {
         let url: URL
         
         if let q = query {
+            currentQuery = q
             nextPageURL = nil
-            Recipes = []
             
             var urlcomp = URLComponents(string: "https://food2fork.ca/api/recipe/search/")
             urlcomp?.queryItems = [.init(name: "query", value: q)]
@@ -33,10 +40,6 @@ class HomeViewModel: ObservableObject {
         } else {
             return
         }
-        
-        guard !isLoading else { return }
-        isLoading = true
-        defer { isLoading = false }
         
         var resquest = URLRequest(url: url)
         resquest.setValue("Token \(APIKey)", forHTTPHeaderField: "Authorization")
